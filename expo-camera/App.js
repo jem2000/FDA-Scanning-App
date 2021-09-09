@@ -33,15 +33,21 @@ export default function App() {
   let fdc = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=TpuNpCiJzfPy5vcMvI9xP2yBwowcY8QqVpCus6De&query=';
   let code = '04976400'; //sprite
 
+  async function getFDC(link) {
+    let response = await fetch(link);
+    return await response.json();
+  }
+
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-    let link = fdc + data;
-    async function getFDC() {
-      let response = await fetch(link);
-      return await response.json();
+
+    getFDC(fdc + data).then(fdc_data => {
+      console.log(fdc_data);
+      console.log(fdc_data.foods[0].description);
+      console.log(fdc_data.foods[0].foodNutrients[3].value);
     }
-    getFDC().then(fdc_data => console.log(fdc_data));
+  );
   };
 
   if (hasPermission === null) {
