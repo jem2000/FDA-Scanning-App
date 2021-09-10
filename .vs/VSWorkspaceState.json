@@ -1,10 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\MultiLayerTest3Tube",
-    "\\MultiLayerTest3Tube\\components",
-    "\\MultiLayerTest3Tube\\screens"
+    "\\MultiLayerTest3Tube\\components"
   ],
-  "SelectedNode": "\\MultiLayerTest3Tube\\App.js",
   "PreviewInSolutionExplorer": false
 }
