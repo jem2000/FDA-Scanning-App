@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, View, Button } from "react-native";
 import * as firebase from "firebase";
-import { CommonActions } from '@react-navigation/native';
 import { AsyncStorage } from "react-native";
 
 export default class SignUp extends React.Component {
@@ -22,7 +21,7 @@ export default class SignUp extends React.Component {
     firebase
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => CommonActions.navigate("Main"))
+      .then(() => this.props.navigation.navigate("Main"))
       .catch(error => this.setState({ errorMessage: error.message }));
   };
   render() {
@@ -50,7 +49,7 @@ export default class SignUp extends React.Component {
         <Button title="Sign Up" onPress={this.handleSignUp} />
         <Button
           title="Already have an account? Login"
-          onPress={() => CommonActions.navigate("Login")}
+          onPress={() => this.props.navigation.navigate("Login")}
         />
       </View>
     );
