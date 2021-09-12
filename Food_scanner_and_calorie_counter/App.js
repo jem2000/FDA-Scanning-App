@@ -21,18 +21,20 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import Main from "./components/Main";
 import BarcodeScanner from "./components/BarcodeScanner";
+import Info from "./components/Info";
 
 // create our app's navigation stack
 const RootStack = createSwitchNavigator(
     {
-      Loading: Loading,
-      SignUp: SignUp,
-      Login: Login,
-      Main: Main,
-      BarcodeScanner: BarcodeScanner,
+        Loading: Loading,
+        SignUp: SignUp,
+        Login: Login,
+        Main: Main,
+        BarcodeScanner: BarcodeScanner,
+        Info: Info
     },
     {
-      initialRouteName: "Loading"
+        initialRouteName: "Loading"
     }
 );
 

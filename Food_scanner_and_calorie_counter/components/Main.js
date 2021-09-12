@@ -45,6 +45,7 @@ export default class Main extends React.Component {
            <Text>Hi {currentUser && currentUser.email}!</Text>
            <Button title="Logout" onPress={this.logoutUser} />
            <Button title = "Scan Barcode" onPress={() => this.props.navigation.navigate("BarcodeScanner")} />
+           <Button title = "Info" onPress={() => this.props.navigation.navigate("Info")} />
         </View>
     );
   }
