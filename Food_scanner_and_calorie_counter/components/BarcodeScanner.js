@@ -16,7 +16,6 @@ export default class BarcodeScanner extends React.Component {
   // console.log("scan2");
 
   async componentDidMount() {
-    console.log("mounting goddamnit");
       const { status } = await BarCodeScanner.requestPermissionsAsync();
       console.log(status);
       this.state.hasPermission = status;
