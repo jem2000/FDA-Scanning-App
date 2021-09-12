@@ -31,7 +31,7 @@ export default class Loading extends React.Component {
 
           <View style={{ flexDirection: "row" }}>
 
-            <TouchableOpacity onPress={() => alert('Hello, world!')} style={styles.leftbutton}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate("BarcodeScanner")} style={styles.leftbutton}>
               <Text style={styles.buttonText}>Rescan</Text>
             </TouchableOpacity>
 

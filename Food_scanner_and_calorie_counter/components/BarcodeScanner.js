@@ -51,6 +51,7 @@ export default class BarcodeScanner extends React.Component {
                 console.log(fdc_data.foods[0].foodNutrients[3].value);
             }
             );
+            this.props.navigation.navigate("Info");
         };
 
 
@@ -68,6 +69,9 @@ export default class BarcodeScanner extends React.Component {
                         this.props.navigation.navigate("Main")
                     }} />
                 </View>
+                <View style={styles.TestingInfoButton}>
+
+                </View>
             </View>
         );
     }
@@ -80,8 +84,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     exitButton: {
-        position: 'absolute',
+        position: 'relative',
         justifyContent: 'center',
-        bottom: 40,
     },
 });
