@@ -11,18 +11,27 @@ import { useNavigation } from '@react-navigation/native';
 export default class BarcodeScanner extends React.Component {
   // const [hasPermission, setHasPermission] = useState(null);
   // const [scanned, setScanned] = useState(false);
-  state = { scanned: false }
-  // const nav = useNavigation();
-  //
+  state = { scanned: false, hasPermission: null }
+
   // console.log("scan2");
-  //
-  // useEffect(() => {
-  //   (async () => {
-  //     const { status } = await BarCodeScanner.requestPermissionsAsync();
-  //     setHasPermission(status === 'granted');
-  //   })();
-  // }, []);
-  render() {
+
+  async componentDidMount() {
+    console.log("mounting goddamnit");
+      const { status } = await BarCodeScanner.requestPermissionsAsync();
+      console.log(status);
+      this.state.hasPermission = status;
+
+      if (this.state.hasPermission === null) {
+        console.log("death");
+        return <Text>Requesting for camera permission</Text>;
+      }
+      if (this.state.hasPermission === false) {
+        console.log("death2");
+        return <Text>No access to camera</Text>;
+      }
+  }
+
+    render() {
 
     let fdc = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=TpuNpCiJzfPy5vcMvI9xP2yBwowcY8QqVpCus6De&query=';
     let code = '04976400'; //sprite
@@ -44,12 +53,8 @@ export default class BarcodeScanner extends React.Component {
       );
     };
 
-    // if (hasPermission === null) {
-    //   return <Text>Requesting for camera permission</Text>;
-    // }
-    // if (hasPermission === false) {
-    //   return <Text>No access to camera</Text>;
-    // }
+
+
     return (
         <View style={styles.container}>
           <BarCodeScanner
