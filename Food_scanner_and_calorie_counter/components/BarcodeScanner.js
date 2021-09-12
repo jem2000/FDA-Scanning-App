@@ -47,10 +47,12 @@ export default class BarcodeScanner extends React.Component {
         }
 
         const handleBarCodeScanned = ({ type, data }) => {
-            console.log(this.state.scanned);
-            alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-            this.state.scanned = true;
-            getFDC(fdc + data).then(fdc_data => {
+            if (this.state.scanned == false) {
+
+                console.log(this.state.scanned);
+                alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+                this.state.scanned = true;
+                getFDC(fdc + data).then(fdc_data => {
                     console.log("This product is ", fdc_data.foods[0].description);
                     console.log("It has ", fdc_data.foods[0].foodNutrients[3].value, "KCAL");
                     console.log("It has ", fdc_data.foods[0].foodNutrients[1].value, "grams of fat");
@@ -69,11 +71,10 @@ export default class BarcodeScanner extends React.Component {
                         basedd: FoodItem.basedd
                     });
                 }
-            );
-            console.log("a");
+                );
+                console.log("a");
+            }
         };
-
-
 
         return (
             <View style={styles.container}>

@@ -6,7 +6,13 @@ import { AsyncStorage } from "react-native";
 
 import { useNavigation } from '@react-navigation/native';
 
-
+let FoodItem = {
+    Calories: 10,
+    Fats: 10,
+    Sugar: 10,
+    Score: 9,
+    basedd: 8
+};
 
 export default class BarcodeScanner extends React.Component {
     // const [hasPermission, setHasPermission] = useState(null);
@@ -15,8 +21,8 @@ export default class BarcodeScanner extends React.Component {
 
     // console.log("scan2");
 
+
     async componentDidMount() {
-        console.log("mounting goddamnit");
         const { status } = await BarCodeScanner.requestPermissionsAsync();
         console.log(status);
         this.state.hasPermission = status;
@@ -42,15 +48,30 @@ export default class BarcodeScanner extends React.Component {
         }
 
         const handleBarCodeScanned = ({ type, data }) => {
-            this.state.scanned = true;
+            console.log(this.state.scanned);
             alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-
+            this.state.scanned = true;
             getFDC(fdc + data).then(fdc_data => {
-                console.log(fdc_data);
-                console.log(fdc_data.foods[0].description);
-                console.log(fdc_data.foods[0].foodNutrients[3].value);
+                console.log("This product is ", fdc_data.foods[0].description);
+                console.log("It has ", fdc_data.foods[0].foodNutrients[3].value, "KCAL");
+                console.log("It has ", fdc_data.foods[0].foodNutrients[1].value, "grams of fat");
+                console.log("It has ", fdc_data.foods[0].foodNutrients[4].value, "grams of sugar");
+
+                FoodItem.Calories = fdc_data.foods[0].foodNutrients[3].value;
+                FoodItem.Fats = fdc_data.foods[0].foodNutrients[1].value;
+                FoodItem.Sugar = fdc_data.foods[0].foodNutrients[4].value;
+                console.log("FoodItem.Calories is ", FoodItem.Calories);
+
+                this.props.navigation.navigate("Info", {
+                    Calories: FoodItem.Calories,
+                    Fats: FoodItem.Fats,
+                    Sugar: FoodItem.Sugar,
+                    Score: FoodItem.Score,
+                    basedd: FoodItem.basedd
+                });
             }
             );
+            console.log("a");
         };
 
 
@@ -82,6 +103,6 @@ const styles = StyleSheet.create({
     exitButton: {
         position: 'absolute',
         justifyContent: 'center',
-        bottom: 40,
+        bottom: 40
     },
 });
