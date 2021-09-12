@@ -4,19 +4,35 @@ import * as firebase from "firebase";
 
 import Constants from 'expo-constants';
 
-const { Apple } = require('./TestingVar.js');
+let FoodItem = {
+  Calories: 1,
+  Fats: 1,
+  Sugar: 1,
+  Score: 0,
+  basedd: 0
+};
 
 export default class Loading extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log("b");
+    FoodItem.Calories = props.navigation.state.params.Calories;
+    FoodItem.Fats = props.navigation.state.params.Fats;
+    FoodItem.Sugar = props.navigation.state.params.Sugar;
+    FoodItem.Score = props.navigation.state.params.Score;
+    FoodItem.basedd = props.navigation.state.params.basedd;
+    console.log(FoodItem);
+  }
   componentDidMount() {
   }
   render() {
     return (
         <View style={styles.container}>
           <Text style={styles.instructions}>
-            Calories: {Apple.Calories} {'\n\n'}
-            Fats: {Apple.Fats} {'\n\n'}
-            Sugar: {Apple.Sugar} {'\n\n'}
-            Score: {Apple.Score} {'\n\n'}
+            Calories: {FoodItem.Calories} {'\n\n'}
+            Fats: {FoodItem.Fats} {'\n\n'}
+            Sugar: {FoodItem.Sugar} {'\n\n'}
+            Score: {FoodItem.Score} {'\n\n'}
           </Text>
           <Text style={styles.instructions}>
             {'\n'}
