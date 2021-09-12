@@ -69,9 +69,6 @@ export default class BarcodeScanner extends React.Component {
                         this.props.navigation.navigate("Main")
                     }} />
                 </View>
-                <View style={styles.TestingInfoButton}>
-
-                </View>
             </View>
         );
     }
