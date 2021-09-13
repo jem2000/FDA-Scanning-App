@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View, ScrollView, Button } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View, ScrollView, Button, TextInput } from 'react-native';
 import * as firebase from "firebase";
 
 import Constants from 'expo-constants';
@@ -22,9 +22,9 @@ function storeFoodItem(CurrentUser, FoodItem) {
         .ref('users/' + CurrentUser.uid)
         .push({
           Title: FoodItem.Title,
-          Calories: FoodItem.Calories,
-          Fats: FoodItem.Fats,
-          Sugar: FoodItem.Sugar,
+          Calories: FoodItem.Calories * FoodItem.Servings,
+          Fats: FoodItem.Fats * FoodItem.Servings,
+          Sugar: FoodItem.Sugar * FoodItem.Servings,
           Servings: FoodItem.Servings
         });
 
@@ -49,25 +49,29 @@ function readFoodItem(CurrentUser, FoodItem) {
     }
 }
 
+// function setServingsValue(num, FoodItem) {
+//   FoodItem.Servings = FoodItem.Servings * num;
+// }
+
 export default class Loading extends React.Component {
   constructor(props) {
     super(props);
-    console.log("b");
+
+    this.state = { currentUser: null, userInput: 1 };
+
     FoodItem.Title = props.navigation.state.params.Title;
     FoodItem.Calories = props.navigation.state.params.Calories;
     FoodItem.Fats = props.navigation.state.params.Fats;
     FoodItem.Sugar = props.navigation.state.params.Sugar;
-    FoodItem.Servings = props.navigation.state.params.Servings;
-    console.log(FoodItem);
+    FoodItem.Servings = this.state.userInput;
   }
-  state = { currentUser: null };
+
   componentDidMount() {
     const { currentUser } = firebase.auth();
-    this.setState({ currentUser });
+    this.setState({
+      currentUser,
+      userInput: 1});
   }
-  // handleClick = (currentUser, FoodItem) => {
-  //   storeFoodItem(currentUser, FoodItem);
-  // }
   render() {
     const { currentUser } = this.state;
     return (
@@ -76,9 +80,9 @@ export default class Loading extends React.Component {
             {FoodItem.Title} {'\n\n'}
           </Text>
           <Text style={styles.instructions}>
-            Calories: {FoodItem.Calories} {'\n\n'}
-            Fats: {FoodItem.Fats} {'\n\n'}
-            Sugar: {FoodItem.Sugar} {'\n\n'}
+            Calories per serving: {FoodItem.Calories * FoodItem.Servings} {'\n\n'}
+            Fat per serving: {FoodItem.Fats * FoodItem.Servings} {'\n\n'}
+            Sugar per serving: {FoodItem.Sugar * FoodItem.Servings} {'\n\n'}
           </Text>
           <Text style={styles.instructions}>
             {'\n'}
@@ -86,6 +90,14 @@ export default class Loading extends React.Component {
           <Text style={styles.instructions}>
             How many portions?:
           </Text>
+          <TextInput
+              style={styles.input}
+              keyboardType='numeric'
+              value={this.state.userInput.toString()}
+              maxLength={10}
+              placeholder="1"
+              onChangeText={userInput => this.setState( { userInput } )}
+          />
           <Text style={styles.instructions}>
             {'\n'}
           </Text>
@@ -159,4 +171,10 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
   },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  }
 });
