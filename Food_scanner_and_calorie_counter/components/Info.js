@@ -5,11 +5,11 @@ import * as firebase from "firebase";
 import Constants from 'expo-constants';
 
 let FoodItem = {
+  Title: "",
   Calories: 1,
   Fats: 1,
   Sugar: 1,
-  Score: 0,
-  basedd: 0
+  Servings: 0
 };
 
 function storeFoodItem(CurrentUser, FoodItem) {
@@ -21,11 +21,11 @@ function storeFoodItem(CurrentUser, FoodItem) {
         .database()
         .ref('users/' + CurrentUser.uid)
         .push({
+          Title: FoodItem.Title,
           Calories: FoodItem.Calories,
           Fats: FoodItem.Fats,
           Sugar: FoodItem.Sugar,
-          Score: FoodItem.Score,
-          basedd: FoodItem.basedd
+          Servings: FoodItem.Servings
         });
   }
 }
@@ -34,11 +34,11 @@ export default class Loading extends React.Component {
   constructor(props) {
     super(props);
     console.log("b");
+    FoodItem.Title = props.navigation.state.params.Title;
     FoodItem.Calories = props.navigation.state.params.Calories;
     FoodItem.Fats = props.navigation.state.params.Fats;
     FoodItem.Sugar = props.navigation.state.params.Sugar;
-    FoodItem.Score = props.navigation.state.params.Score;
-    FoodItem.basedd = props.navigation.state.params.basedd;
+    FoodItem.Servings = props.navigation.state.params.Servings;
     console.log(FoodItem);
   }
   state = { currentUser: null };
@@ -53,11 +53,13 @@ export default class Loading extends React.Component {
     const { currentUser } = this.state;
     return (
         <View style={styles.container}>
+          <Text style={styles.title}>
+            {FoodItem.Title} {'\n\n'}
+          </Text>
           <Text style={styles.instructions}>
             Calories: {FoodItem.Calories} {'\n\n'}
             Fats: {FoodItem.Fats} {'\n\n'}
             Sugar: {FoodItem.Sugar} {'\n\n'}
-            Score: {FoodItem.Score} {'\n\n'}
           </Text>
           <Text style={styles.instructions}>
             {'\n'}
@@ -97,6 +99,14 @@ const styles = StyleSheet.create({
     width: 305,
     height: 159,
     marginBottom: 20,
+  },
+  title: {
+    color: '#888',
+    fontSize: 36,
+    marginHorizontal: 15,
+    marginBottom: 10,
+    justifyContent: 'space-evenly',
+    textAlign: 'center'
   },
   instructions: {
     color: '#888',

@@ -9,17 +9,15 @@ import { useNavigation } from '@react-navigation/native';
 import * as firebase from 'firebase';
 
 let FoodItem = {
+    Title: "",
     Calories: 10,
     Fats: 10,
     Sugar: 10,
-    Score: 9,
-    basedd: 6
+    Servings: 1,
 };
 
 export default class BarcodeScanner extends React.Component {
     state = { scanned: false, hasPermission: null }
-
-    // console.log("scan2");
 
     async componentDidMount() {
 
@@ -59,17 +57,18 @@ export default class BarcodeScanner extends React.Component {
                     console.log("It has ", fdc_data.foods[0].foodNutrients[1].value, "grams of fat");
                     console.log("It has ", fdc_data.foods[0].foodNutrients[4].value, "grams of sugar");
 
+                    FoodItem.Title = fdc_data.foods[0].description;
                     FoodItem.Calories = fdc_data.foods[0].foodNutrients[3].value;
                     FoodItem.Fats = fdc_data.foods[0].foodNutrients[1].value;
                     FoodItem.Sugar = fdc_data.foods[0].foodNutrients[4].value;
                     console.log("FoodItem.Calories is ", FoodItem.Calories);
 
                     this.props.navigation.navigate("Info", {
+                        Title: FoodItem.Title,
                         Calories: FoodItem.Calories,
                         Fats: FoodItem.Fats,
                         Sugar: FoodItem.Sugar,
-                        Score: FoodItem.Score,
-                        basedd: FoodItem.basedd
+                        Servings: FoodItem.Servings
                     });
                 }
                 );
