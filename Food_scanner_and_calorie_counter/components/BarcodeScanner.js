@@ -6,22 +6,23 @@ import { AsyncStorage } from "react-native";
 
 import { useNavigation } from '@react-navigation/native';
 
+import * as firebase from 'firebase';
+
 let FoodItem = {
     Calories: 10,
     Fats: 10,
     Sugar: 10,
     Score: 9,
-    basedd: 8
+    basedd: 6
 };
 
 export default class BarcodeScanner extends React.Component {
-    // const [hasPermission, setHasPermission] = useState(null);
-    // const [scanned, setScanned] = useState(false);
     state = { scanned: false, hasPermission: null }
 
     // console.log("scan2");
 
     async componentDidMount() {
+
         const { status } = await BarCodeScanner.requestPermissionsAsync();
         console.log(status);
         this.state.hasPermission = status;

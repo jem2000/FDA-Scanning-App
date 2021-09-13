@@ -12,6 +12,24 @@ let FoodItem = {
   basedd: 0
 };
 
+function storeFoodItem(CurrentUser, FoodItem) {
+
+  if (CurrentUser != null) {
+    console.log("My uid is ", CurrentUser.uid)
+
+    firebase
+        .database()
+        .ref('users/' + CurrentUser.uid)
+        .push({
+          Calories: FoodItem.Calories,
+          Fats: FoodItem.Fats,
+          Sugar: FoodItem.Sugar,
+          Score: FoodItem.Score,
+          basedd: FoodItem.basedd
+        });
+  }
+}
+
 export default class Loading extends React.Component {
   constructor(props) {
     super(props);
@@ -23,9 +41,16 @@ export default class Loading extends React.Component {
     FoodItem.basedd = props.navigation.state.params.basedd;
     console.log(FoodItem);
   }
+  state = { currentUser: null };
   componentDidMount() {
+    const { currentUser } = firebase.auth();
+    this.setState({ currentUser });
   }
+  // handleClick = (currentUser, FoodItem) => {
+  //   storeFoodItem(currentUser, FoodItem);
+  // }
   render() {
+    const { currentUser } = this.state;
     return (
         <View style={styles.container}>
           <Text style={styles.instructions}>
@@ -51,7 +76,7 @@ export default class Loading extends React.Component {
               <Text style={styles.buttonText}>Rescan</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => alert('Goodbye, world!')} style={styles.rightbutton}>
+            <TouchableOpacity onPress={() => storeFoodItem(currentUser, FoodItem)} style={styles.rightbutton}>
               <Text style={styles.buttonText}>Add to Daily Intake</Text>
             </TouchableOpacity>
 
