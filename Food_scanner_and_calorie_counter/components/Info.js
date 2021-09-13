@@ -27,7 +27,26 @@ function storeFoodItem(CurrentUser, FoodItem) {
           Sugar: FoodItem.Sugar,
           Servings: FoodItem.Servings
         });
+
+      console.log("finished storing");
   }
+}
+
+function readFoodItem(CurrentUser, FoodItem) {
+
+    if (CurrentUser != null) {
+        console.log("My uid is ", CurrentUser.uid)
+
+        firebase
+            .database()
+            .ref('users/' + CurrentUser.uid)
+            .once('value', snapshot => {
+                const tastyFood = snapshot.val();
+                console.log(tastyFood);
+             });
+
+        console.log("finished writing");
+    }
 }
 
 export default class Loading extends React.Component {
@@ -80,6 +99,10 @@ export default class Loading extends React.Component {
 
             <TouchableOpacity onPress={() => storeFoodItem(currentUser, FoodItem)} style={styles.rightbutton}>
               <Text style={styles.buttonText}>Add to Daily Intake</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => readFoodItem(currentUser, FoodItem)} style={styles.rightbutton}>
+                <Text style={styles.buttonText}>Read History</Text>
             </TouchableOpacity>
 
           </View>
