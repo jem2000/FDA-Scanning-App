@@ -12,7 +12,7 @@ let FoodItem = {
   Servings: 0
 };
 
-function storeFoodItem(CurrentUser, FoodItem) {
+function storeFoodItem(CurrentUser, FoodItem, Servings) {
 
   if (CurrentUser != null) {
     console.log("My uid is ", CurrentUser.uid)
@@ -22,10 +22,10 @@ function storeFoodItem(CurrentUser, FoodItem) {
         .ref('users/' + CurrentUser.uid)
         .push({
           Title: FoodItem.Title,
-          Calories: FoodItem.Calories * FoodItem.Servings,
-          Fats: FoodItem.Fats * FoodItem.Servings,
-          Sugar: FoodItem.Sugar * FoodItem.Servings,
-          Servings: FoodItem.Servings
+          Calories: FoodItem.Calories * Servings,
+          Fats: FoodItem.Fats * Servings,
+          Sugar: FoodItem.Sugar * Servings,
+          Servings: Servings
         });
 
       console.log("finished storing");
@@ -80,9 +80,9 @@ export default class Loading extends React.Component {
             {FoodItem.Title} {'\n\n'}
           </Text>
           <Text style={styles.instructions}>
-            Calories per serving: {FoodItem.Calories * FoodItem.Servings} {'\n\n'}
-            Fat per serving: {FoodItem.Fats * FoodItem.Servings} {'\n\n'}
-            Sugar per serving: {FoodItem.Sugar * FoodItem.Servings} {'\n\n'}
+            Calories: {FoodItem.Calories * this.state.userInput} {'\n\n'}
+            Fat: {FoodItem.Fats * this.state.userInput} {'\n\n'}
+            Sugar: {FoodItem.Sugar * this.state.userInput} {'\n\n'}
           </Text>
           <Text style={styles.instructions}>
             {'\n'}
@@ -109,7 +109,7 @@ export default class Loading extends React.Component {
               <Text style={styles.buttonText}>Rescan</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => storeFoodItem(currentUser, FoodItem)} style={styles.rightbutton}>
+            <TouchableOpacity onPress={() => storeFoodItem(currentUser, FoodItem, this.state.userInput)} style={styles.rightbutton}>
               <Text style={styles.buttonText}>Add to Daily Intake</Text>
             </TouchableOpacity>
 
