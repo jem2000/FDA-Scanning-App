@@ -27,6 +27,8 @@ function storeFoodItem(CurrentUser, FoodItem) {
           Score: FoodItem.Score,
           basedd: FoodItem.basedd
         });
+
+      console.log("finished storing");
   }
 }
 
@@ -38,10 +40,12 @@ function readFoodItem(CurrentUser, FoodItem) {
         firebase
             .database()
             .ref('users/' + CurrentUser.uid)
-            .on('value', snapshot => {
+            .once('value', snapshot => {
                 const tastyFood = snapshot.val();
-                console.warn(tastyFood);
-            });
+                console.log(tastyFood);
+             });
+
+        console.log("finished writing");
     }
 }
 
