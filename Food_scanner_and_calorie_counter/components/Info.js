@@ -93,16 +93,16 @@ export default class Loading extends React.Component {
 
           <View style={{ flexDirection: "row" }}>
 
-            <TouchableOpacity onPress={() => this.props.navigation.navigate("BarcodeScanner")} style={styles.leftbutton}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate("BarcodeScanner")} style={styles.button}>
               <Text style={styles.buttonText}>Rescan</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => storeFoodItem(currentUser, FoodItem)} style={styles.rightbutton}>
+            <TouchableOpacity onPress={() => storeFoodItem(currentUser, FoodItem)} style={styles.button}>
               <Text style={styles.buttonText}>Add to Daily Intake</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => readFoodItem(currentUser, FoodItem)} style={styles.rightbutton}>
-                <Text style={styles.buttonText}>Read History</Text>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate("History")} style={styles.button}>
+                <Text style={styles.buttonText}>History</Text>
             </TouchableOpacity>
 
           </View>
@@ -138,15 +138,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     justifyContent: 'space-evenly',
   },
-  leftbutton: {
-    backgroundColor: "blue",
-    padding: 20,
-    borderRadius: 5,
-    width: 150,
-    height: 65,
-
-  },
-  rightbutton: {
+  button: {
     backgroundColor: "blue",
     padding: 20,
     borderRadius: 5,
