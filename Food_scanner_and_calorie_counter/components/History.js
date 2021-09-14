@@ -10,25 +10,35 @@ function readFoodItem(CurrentUser) {
     if (CurrentUser != null) {
         console.log("My uid is ", CurrentUser.uid)
 
+        let foodLog;
+
         firebase
             .database()
             .ref('users/' + CurrentUser.uid)
             .once('value', snapshot => {
-                const tastyFood = snapshot.val();
-                console.log(tastyFood);
+                foodLog = snapshot.val();
+                console.log(foodLog);
             });
 
         console.log("finished writing");
+        return foodLog;
     }
+    else console.log("current user is null")
 }
 
-
 export default class History extends React.Component {
-    state = { currentUser: null };
+    constructor(props) {
+        super(props);
+        this.state = { currentUser: null };
+    }
+
     componentDidMount() {
         const { currentUser } = firebase.auth();
         this.setState({ currentUser });
+        readFoodItem(currentUser);
     }
+
+
     render() {
         const { currentUser } = this.state;
         return (
