@@ -8,7 +8,7 @@ import {
   View
 } from "react-native";
 import * as firebase from "firebase";
-import { AsyncStorage } from "react-native";
+import { AsyncStorage, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -42,11 +42,24 @@ export default class Main extends React.Component {
     const { currentUser } = this.state;
     return (
         <View  style={styles.container}>
-           <Text>Hi {currentUser && currentUser.email}!</Text>
-           <Button title="Logout" onPress={this.logoutUser} />
-           <Button title = "Scan Barcode" onPress={() => this.props.navigation.navigate("BarcodeScanner")} />
-           <Button title = "Info" onPress={() => this.props.navigation.navigate("Info")} />
-           <Button title = "History" onPress={() => this.props.navigation.navigate("History")} />
+          <Text style={styles.title}>
+              Food Scanner and Calorie Counter {'\n\n'}
+          </Text>
+          <Text style={styles.greeting}>
+            Hi {currentUser && currentUser.email}! {'\n\n\n\n\n'}
+          </Text>
+          <TouchableOpacity onPress={this.logoutUser} style={styles.button}>
+            <Text style={styles.buttonText}>Logout</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate("BarcodeScanner")} style={styles.button}>
+            <Text style={styles.buttonText}>Scan Barcode</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate("History")} style={styles.button}>
+            <Text style={styles.buttonText}>History</Text>
+          </TouchableOpacity>
+          <Text style={styles.greeting}>
+            {'\n\n\n\n\n'} App built by Justin Melville and Justin Lam
+          </Text>
         </View>
     );
   }
@@ -56,5 +69,33 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
+  },
+  button: {
+    backgroundColor: "blue",
+    padding: 20,
+    borderRadius: 5,
+    width: 120,
+    height: 65,
+  },
+  buttonText: {
+    fontSize: 20,
+    color: '#fff',
+    textAlign: 'center',
+  },
+  title: {
+    color: '#888',
+    fontSize: 36,
+    marginHorizontal: 15,
+    marginBottom: 10,
+    justifyContent: 'space-evenly',
+    textAlign: 'center'
+  },
+  greeting: {
+    color: '#888',
+    fontSize: 28,
+    marginHorizontal: 15,
+    marginBottom: 10,
+    justifyContent: 'space-evenly',
+    textAlign: 'center'
   }
 });

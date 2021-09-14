@@ -1,5 +1,5 @@
  import React, { useEffect, useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
 
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { AsyncStorage } from "react-native";
@@ -85,9 +85,9 @@ export default class BarcodeScanner extends React.Component {
                 {this.state.scanned && <Button title={'Tap to Scan Again'} onPress={() => this.state.scanned = false} />}
 
                 <View style={styles.exitButton}>
-                    <Button title="Exit" onPress={() => {
-                        this.props.navigation.navigate("Main")
-                    }} />
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate("Main")} style={styles.button}>
+                        <Text style={styles.buttonText}>Exit Scanning</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         );
@@ -105,4 +105,26 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         bottom: 40
     },
+    button: {
+        backgroundColor: "blue",
+        padding: 20,
+        borderRadius: 5,
+        height: 90,
+        position: 'absolute',
+        justifyContent: 'center',
+        bottom: -40,
+        width: 450
+    },
+    buttonText: {
+        fontSize: 20,
+        color: '#fff',
+        textAlign: 'center'
+    },
+    instructions: {
+        fontSize: 20,
+        textAlign: 'center',
+        position: 'absolute',
+        top: 40
+
+    }
 });

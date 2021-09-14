@@ -177,7 +177,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: 150,
     height: 65,
-
   },
   buttonText: {
     fontSize: 20,
