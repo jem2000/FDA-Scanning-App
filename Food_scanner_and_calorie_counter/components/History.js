@@ -1,41 +1,41 @@
 import React from 'react';
-import { StyleSheet, Text, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import * as firebase from "firebase";
 
 import Constants from 'expo-constants';
 
 
-//function storeFoodItem(CurrentUser, FoodItem) {
+function readFoodItem(CurrentUser) {
 
-//    if (CurrentUser != null) {
-//        console.log("My uid is ", CurrentUser.uid)
+    if (CurrentUser != null) {
+        console.log("My uid is ", CurrentUser.uid)
 
-//        firebase
-//            .database()
-//            .ref('users/' + CurrentUser.uid)
-//            .push({
-//                Title: FoodItem.Title,
-//                Calories: FoodItem.Calories,
-//                Fats: FoodItem.Fats,
-//                Sugar: FoodItem.Sugar,
-//                Servings: FoodItem.Servings
-//            });
+        firebase
+            .database()
+            .ref('users/' + CurrentUser.uid)
+            .once('value', snapshot => {
+                const tastyFood = snapshot.val();
+                console.log(tastyFood);
+            });
 
-//        console.log("finished storing");
-//    }
-//}
+        console.log("finished writing");
+    }
+}
 
 
 export default class History extends React.Component {
     state = { currentUser: null };
-
+    componentDidMount() {
+        const { currentUser } = firebase.auth();
+        this.setState({ currentUser });
+    }
     render() {
         const { currentUser } = this.state;
         return (
             <SafeAreaView style={styles.container}>
                 <ScrollView style={styles.scrollView}>
                     <Text style={styles.text}>
-                        The FitnessGram™ Pacer Test is a multistage aerobic capacity
+                        The FitnessGram Pacer Test is a multistage aerobic capacity
                         test that progressively gets more difficult as it continues.
                         The 20 meter pacer test will begin in 30 seconds. Line up at
                         the start. The running speed starts slowly, but gets faster
@@ -46,6 +46,11 @@ export default class History extends React.Component {
                         test is over. The test will begin on the word start. On your mark,
                         get ready, start.
                     </Text>
+
+                    <TouchableOpacity onPress={() => readFoodItem(currentUser)} style={styles.button}>
+                        <Text style={styles.buttonText}>History</Text>
+                    </TouchableOpacity>
+
                 </ScrollView>
             </SafeAreaView>
 
@@ -55,15 +60,15 @@ export default class History extends React.Component {
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: Constants.statusBarHeight,
-  },
-  scrollView: {
-    backgroundColor: 'pink',
-    marginHorizontal: 20,
-  },
-  text: {
-    fontSize: 60,
-  },
+    container: {
+        flex: 1,
+        marginTop: Constants.statusBarHeight,
+    },
+    scrollView: {
+        backgroundColor: 'pink',
+        marginHorizontal: 20,
+    },
+    text: {
+        fontSize: 60,
+    },
 });

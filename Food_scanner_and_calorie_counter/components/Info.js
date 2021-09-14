@@ -115,20 +115,30 @@ export default class Loading extends React.Component {
           {/*<Button title="Hello World" onPress={() => alert('Hello, world!')} />*/}
 
           <View style={{ flexDirection: "row" }}>
+                {/*<View style={{ flexWrap: "wrap" }}>*/}
 
-            <TouchableOpacity onPress={() => this.props.navigation.navigate("BarcodeScanner")} style={styles.button}>
-              <Text style={styles.buttonText}>Rescan</Text>
-            </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate("BarcodeScanner")} style={styles.button}>
+                      <Text style={styles.buttonText}>Rescan</Text>
+                    </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => storeFoodItem(currentUser, FoodItem, this.state.userInput)} style={styles.button}>
-              <Text style={styles.buttonText}>Add to Daily Intake</Text>
-            </TouchableOpacity>
+                    <TouchableOpacity onPress={() => storeFoodItem(currentUser, FoodItem, this.state.userInput)} style={styles.button}>
+                      <Text style={styles.buttonText}>Add to Daily Intake</Text>
+                    </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => this.props.navigation.navigate("History")} style={styles.button}>
-                <Text style={styles.buttonText}>History</Text>
-            </TouchableOpacity>
+                    {/*<TouchableOpacity onPress={() => this.props.navigation.navigate("History")} style={styles.button}>*/}
+                    {/*    <Text style={styles.buttonText}>History</Text>*/}
+                    {/*</TouchableOpacity>*/}
 
-          </View>
+                {/*<TouchableOpacity onPress={() => readFoodItem(currentUser, FoodItem)} style={styles.button}>*/}
+                {/*    <Text style={styles.buttonText}>History</Text>*/}
+                {/*</TouchableOpacity>*/}
+
+                <TouchableOpacity onPress={() => this.props.navigation.navigate("History")} style={styles.button}>
+                        <Text style={styles.buttonText}>History</Text>
+                    </TouchableOpacity>
+
+                {/*</View>*/}
+            </View>
         </View>
     );
   }
