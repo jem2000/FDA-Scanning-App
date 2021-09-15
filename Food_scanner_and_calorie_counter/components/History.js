@@ -149,6 +149,6 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
     },
     text: {
-        fontSize: 60,
+        fontSize: 30,
     },
 });
