@@ -29,7 +29,7 @@ import Constants from 'expo-constants';
 export default class History extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { currentUser: null, foodHistory: null };
+        this.state = { currentUser: null, foodHistory: null, foodTotal: null };
     }
 
     componentDidMount() {
@@ -50,31 +50,42 @@ export default class History extends React.Component {
                 }
 
                 let fullString = "";
-                for (i = 0; i < foodArray.length; i++) {
+                let totalCalFullString = "";
+                for (let i = 0; i < foodArray.length; i++) {
                     let myString =
-                    foodArray[i][4][0] + ": " + foodArray[i][4][1] + "\n" +
-                    foodArray[i][0][0] + ": " + foodArray[i][0][1] + "\n" +
-                    foodArray[i][1][0] + ": " + foodArray[i][1][1] + "\n" +
-                    foodArray[i][2][0] + ": " + foodArray[i][2][1] + "\n" +
-                    foodArray[i][3][0] + ": " + foodArray[i][3][1] + "\n" + "\n\n";
+                        foodArray[i][4][0] + ": " + foodArray[i][4][1] + "\n" +
+                        foodArray[i][0][0] + ": " + foodArray[i][0][1] + "\n" +
+                        foodArray[i][1][0] + ": " + foodArray[i][1][1] + "\n" +
+                        foodArray[i][2][0] + ": " + foodArray[i][2][1] + "\n" +
+                        foodArray[i][3][0] + ": " + foodArray[i][3][1] + "\n" + "\n\n";
 
                     fullString = fullString + myString;
+
+                    let totalCallString = foodArray[i][0][0] + ": " + foodArray[i][0][1] + "\n\n";
+                    totalCalFullString = totalCalFullString + totalCallString;
                 }
 
                 this.setState({ foodHistory: fullString })
+                this.setState({ foodTotal: totalCalFullString })
             });
 
     }
 
 
     render() {
-        const { currentUser, foodHistory } = this.state;
+        const { currentUser, foodHistory, foodTotal } = this.state;
         return (
             <SafeAreaView style={styles.container}>
                 <ScrollView style={styles.scrollView}>
                     <Text style={styles.text}>
                         {this.state.foodHistory}
                     </Text>
+
+                    <Text style={styles.text}>
+                        {this.state.foodTotal}
+                    </Text>
+
+
 
                     <View style={styles.exitButton}>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate("Main")} style={styles.button}>
