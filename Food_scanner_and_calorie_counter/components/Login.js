@@ -1,7 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, TextInput, View, Button } from "react-native";
+import { Image, StyleSheet, Text, TextInput, View, Button } from "react-native";
 import * as firebase from "firebase";
 import { AsyncStorage } from "react-native";
+import { useFonts } from 'expo-font';
+
+import logo from './assets/food-pyramid.png';
 
 export default class Login extends React.Component {
   state = { email: "", password: "", errorMessage: null };
@@ -18,8 +21,9 @@ export default class Login extends React.Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Login</Text>
+    <View style={styles.container}>
+        <Text style={{ fontSize: 60 }}> Login </Text>
+        <Image source={logo} style={{ width: 305, height: 159 }} />
         {this.state.errorMessage && (
           <Text style={{ color: "red" }}>{this.state.errorMessage}</Text>
         )}
@@ -51,7 +55,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+        alignItems: "center",
+    backgroundColor: 'pink',
   },
   textInput: {
     height: 40,
@@ -59,5 +64,8 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderWidth: 1,
     marginTop: 8
-  }
+  },
+  titleWords: {
+      fontSize: 100,
+    }
 });
