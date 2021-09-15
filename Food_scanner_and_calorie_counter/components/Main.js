@@ -43,10 +43,10 @@ export default class Main extends React.Component {
     return (
         <View  style={styles.container}>
           <Text style={styles.title}>
-              Food Scanner and Calorie Counter {'\n\n'}
+              Food Scanner and Calorie Counter 
           </Text>
           <Text style={styles.greeting}>
-            Hi {currentUser && currentUser.email}! {'\n\n\n\n\n'}
+            Hi {currentUser && currentUser.email}! {/*{'\n\n\n\n\n'}*/}
           </Text>
           <TouchableOpacity onPress={this.logoutUser} style={styles.button}>
             <Text style={styles.buttonText}>Logout</Text>
@@ -58,7 +58,7 @@ export default class Main extends React.Component {
             <Text style={styles.buttonText}>History</Text>
           </TouchableOpacity>
           <Text style={styles.greeting}>
-            {'\n\n\n\n\n'} App built by Justin Melville and Justin Lam
+            {/*{'\n\n\n\n\n'}*/} App built by Justin Melville and Justin Lam
           </Text>
         </View>
     );
@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#fff',
     textAlign: 'center',
+
   },
   title: {
     color: '#888',

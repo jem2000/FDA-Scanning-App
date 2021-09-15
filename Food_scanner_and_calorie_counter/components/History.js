@@ -51,6 +51,11 @@ export default class History extends React.Component {
 
                 let fullString = "";
                 let totalCalFullString = "";
+
+                var totalCalories = 0;
+                var totalFats = 0;
+                var totalSugars = 0;
+
                 for (let i = 0; i < foodArray.length; i++) {
                     let myString =
                         foodArray[i][4][0] + ": " + foodArray[i][4][1] + "\n" +
@@ -61,9 +66,20 @@ export default class History extends React.Component {
 
                     fullString = fullString + myString;
 
-                    let totalCallString = foodArray[i][0][0] + ": " + foodArray[i][0][1] + "\n\n";
-                    totalCalFullString = totalCalFullString + totalCallString;
+                    totalCalories += foodArray[i][0][1];
+                    totalFats += foodArray[i][1][1];
+                    totalSugars += foodArray[i][3][1];
+
+                    //let totalCallString = foodArray[i][0][0] + ": " + foodArray[i][0][1] + "\n\n";
+                    //totalCalFullString = totalCalFullString + totalCallString;
                 }
+
+                totalCalFullString = foodArray[0][0][0] + ": " + totalCalories + "\n"
+                                   + foodArray[0][1][0] + ": " + totalFats + "\n"
+                                   + foodArray[0][3][0] + ": " + totalSugars + "\n";
+
+                console.log(foodArray[0][3][0]);
+                console.log(totalSugars);
 
                 this.setState({ foodHistory: fullString })
                 this.setState({ foodTotal: totalCalFullString })
@@ -83,6 +99,10 @@ export default class History extends React.Component {
 
                     <Text style={styles.text}>
                         {this.state.foodTotal}
+                    </Text>
+
+                    <Text style={styles.text}>
+                        {'\n\n'}
                     </Text>
 
 
