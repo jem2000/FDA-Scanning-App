@@ -69,12 +69,10 @@ export default class History extends React.Component {
                     totalCalories += foodArray[i][0][1];
                     totalFats += foodArray[i][1][1];
                     totalSugars += foodArray[i][3][1];
-
-                    //let totalCallString = foodArray[i][0][0] + ": " + foodArray[i][0][1] + "\n\n";
-                    //totalCalFullString = totalCalFullString + totalCallString;
                 }
 
-                totalCalFullString = foodArray[0][0][0] + ": " + totalCalories + "\n"
+                totalCalFullString = "Total Nutrients: \n"
+                                   + foodArray[0][0][0] + ": " + totalCalories + "\n"
                                    + foodArray[0][1][0] + ": " + totalFats + "\n"
                                    + foodArray[0][3][0] + ": " + totalSugars + "\n";
 
@@ -89,7 +87,7 @@ export default class History extends React.Component {
 
 
     render() {
-        const { currentUser, foodHistory, foodTotal } = this.state;
+        //const { currentUser, foodHistory, foodTotal } = this.state;
         return (
             <SafeAreaView style={styles.container}>
                 <ScrollView style={styles.scrollView}>

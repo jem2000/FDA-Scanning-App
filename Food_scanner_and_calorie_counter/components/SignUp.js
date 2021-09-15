@@ -1,7 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, TextInput, View, Button } from "react-native";
+import { Image, StyleSheet, Text, TextInput, View, Button } from "react-native";
 import * as firebase from "firebase";
 import { AsyncStorage } from "react-native";
+import { useFonts } from 'expo-font';
+
+import logo from './assets/food-pyramid.png';
 
 export default class SignUp extends React.Component {
   state = { email: "", password: "", errorMessage: null };
@@ -26,8 +29,9 @@ export default class SignUp extends React.Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Sign Up</Text>
+        <View style={styles.container}>
+            <Text style={{ fontSize: 60 }}> Sign Up </Text>
+        <Image source={logo} style={{ width: 305, height: 159 }} />
         {this.state.errorMessage && (
           <Text style={{ color: "red" }}>{this.state.errorMessage}</Text>
         )}

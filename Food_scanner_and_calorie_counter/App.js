@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import * as firebase from 'firebase';
 import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyBzG9ZHCPdPloDztdEUpP7uLpbUe4pjc8o",
   authDomain: "fda-scanner-app.firebaseapp.com",
