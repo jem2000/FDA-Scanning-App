@@ -48,17 +48,20 @@ export default class History extends React.Component {
                 for (const [key, value] of foodLogArray) {
                     foodArray.push(Object.entries(value));
                 }
-                this.setState({ foodHistory: foodArray })
 
-                // foodArray.forEach(function(item) {
-                //     //console.log(foodArray[item][4][0] + ": " + foodArray[item][4][1]);
-                //     console.log(foodArray[item] + ": " + foodArray[item]);
-                //     console.log(foodArray[item] + ": " + foodArray[item]);
-                //     //console.log(foodArray[item][2][0] + ": " + foodArray[item][2][1]);
-                //     //console.log(foodArray[item][3][0] + ": " + foodArray[item][3][1]);
-                //     console.log("\n");
-                // })
+                let fullString = "";
+                for (i = 0; i < foodArray.length; i++) {
+                    let myString =
+                    foodArray[i][4][0] + ": " + foodArray[i][4][1] + "\n" +
+                    foodArray[i][0][0] + ": " + foodArray[i][0][1] + "\n" +
+                    foodArray[i][1][0] + ": " + foodArray[i][1][1] + "\n" +
+                    foodArray[i][2][0] + ": " + foodArray[i][2][1] + "\n" +
+                    foodArray[i][3][0] + ": " + foodArray[i][3][1] + "\n" + "\n\n";
 
+                    fullString = fullString + myString;
+                }
+
+                this.setState({ foodHistory: fullString })
             });
 
     }
