@@ -5,27 +5,26 @@ import * as firebase from "firebase";
 import Constants from 'expo-constants';
 
 
-function readFoodItem(CurrentUser) {
-
-    if (CurrentUser != null) {
-        console.log("My uid is ", CurrentUser.uid)
-
-        let foodLog;
-
-        firebase
-            .database()
-            .ref('users/' + CurrentUser.uid)
-            .once('value', snapshot => {
-                foodLog = snapshot.val();
-                console.log("in firebase", foodLog);
-                return foodLog;
-            });
-
-        console.log("out of firebase", foodLog);
-
-    }
-    else console.log("current user is null")
-}
+// async function readFoodItem(CurrentUser) {
+//
+//     if (CurrentUser != null) {
+//         console.log("My uid is ", CurrentUser.uid)
+//
+//         let foodLog;
+//
+//         firebase
+//             .database()
+//             .ref('users/' + CurrentUser.uid)
+//             .once('value', snapshot => {
+//                 foodLog = snapshot.val();
+//                 console.log("in firebase", foodLog);
+//             });
+//
+//         await console.log("out of firebase", foodLog);
+//         return foodLog;
+//     }
+//     else console.log("current user is null")
+// }
 
 export default class History extends React.Component {
     constructor(props) {
@@ -35,9 +34,33 @@ export default class History extends React.Component {
 
     componentDidMount() {
         const { currentUser } = firebase.auth();
-        const foodHistory = readFoodItem(currentUser);
-        this.setState({ currentUser, foodHistory })
-        console.log(foodHistory);
+        this.setState({ currentUser })
+        //const foodHistory = readFoodItem(currentUser);
+
+        let foodArray = [];
+
+        firebase
+            .database()
+            .ref('users/' + currentUser.uid)
+            .once('value', snapshot => {
+                let foodLog = snapshot.val();
+                let foodLogArray = Object.entries(foodLog);
+                for (const [key, value] of foodLogArray) {
+                    foodArray.push(Object.entries(value));
+                }
+                this.setState({ foodHistory: foodArray })
+
+                // foodArray.forEach(function(item) {
+                //     //console.log(foodArray[item][4][0] + ": " + foodArray[item][4][1]);
+                //     console.log(foodArray[item] + ": " + foodArray[item]);
+                //     console.log(foodArray[item] + ": " + foodArray[item]);
+                //     //console.log(foodArray[item][2][0] + ": " + foodArray[item][2][1]);
+                //     //console.log(foodArray[item][3][0] + ": " + foodArray[item][3][1]);
+                //     console.log("\n");
+                // })
+
+            });
+
     }
 
 
@@ -47,11 +70,6 @@ export default class History extends React.Component {
             <SafeAreaView style={styles.container}>
                 <ScrollView style={styles.scrollView}>
                     <Text style={styles.text}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         {this.state.foodHistory}
                     </Text>
 
