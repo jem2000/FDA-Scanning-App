@@ -46,7 +46,7 @@ export default class Main extends React.Component {
               Food Scanner and Calorie Counter 
           </Text>
           <Text style={styles.greeting}>
-            Hi {currentUser && currentUser.email}! {/*{'\n\n\n\n\n'}*/}
+            Hi {currentUser && currentUser.email}! {'\n\n'}
           </Text>
           <TouchableOpacity onPress={this.logoutUser} style={styles.button}>
             <Text style={styles.buttonText}>Logout</Text>
@@ -58,7 +58,7 @@ export default class Main extends React.Component {
             <Text style={styles.buttonText}>History</Text>
           </TouchableOpacity>
           <Text style={styles.greeting}>
-            {/*{'\n\n\n\n\n'}*/} App built by Justin Melville and Justin Lam
+            {'\n\n'} App built by Justin Melville and Justin Lam
           </Text>
         </View>
     );
