@@ -9,15 +9,6 @@ import logo from './assets/food-pyramid.png';
 export default class SignUp extends React.Component {
   state = { email: "", password: "", errorMessage: null };
   componentDidMount() {
-    //1.
-    // const value=AsyncStorage.gettItem("key");
-    //if (value !== null){}
-    //2.
-    // firebase.auth().onAuthStateChanged(user => {
-    //   if (user != null) {
-    //     console.log("We are authenticated now!");
-    //   }
-    // });
   }
 
   handleSignUp = () => {
