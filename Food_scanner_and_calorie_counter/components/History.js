@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     scrollView: {
-        backgroundColor: 'pink',
+        //backgroundColor: 'pink',
         marginHorizontal: 20,
     },
     text: {
