@@ -1,0 +1,16 @@
+name: learn-github-actions
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm install -g expo-cli
+      - run: expo init Food_scanner_and_calorie_counter
+      - run: expo install firebase
+      - run: expo install expo-barcode-scanner
+      - run: npm install --save @react-native-community/masked-view
+
