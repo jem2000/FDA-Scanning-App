@@ -38,20 +38,33 @@ zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 
 ## Sketches and Photos
 
-Circuit:
-![Circuit Image](./images/Circuit.png)
+Loading Screen:
+![Loading Screen Image](./images/Loading_Screen.png)
 
-Web Server:
-![Web Server Image](./images/Web_Server_Screenshot.png)
+Sign Up Screen:
+![Sign Up Screen Image](./images/Sign_Up_Screen.png)
 
-Sending Votes:
-![sending votes](./images/vote_blue.png)
+Login Screen
+![Login Screen](./images/Login_Screen.png)
 
-Heartbeats being processed:
-![process heartbeats](./images/heartbeats.png)
+Main Menu:
+![Main Menu](./images/Main_Menu.png)
 
-Votes being processed:
-![process votes](./images/voting.png)
+Barcode Scanner:
+![Barcode Scanner](./images/Barcode_Scanner.png)
+
+Info Screen:
+![Info Screen](./images/Info_Screen.png)
+
+History Screen:
+![History Screen](./images/History.png)
+
+FDC Request:
+![FDC Request Screen](./images/FDC_Request.png)
+
+Firebase Real Time:
+![Firebase Screenshot](./images/Firebase_Screenshot.png)
+
 
 ## Supporting Artifacts
 Youtube Link
@@ -61,6 +74,8 @@ Storyboard:
 
 Flowchart for video:
 ![Quest 4 Flowchart.png Image](./images/Quest_4_Flowchart.png)
+
+Time log
 
 Code:
 ![udp_multicast_example_main.c Code](./code/udp_multicast_example_main.c)
