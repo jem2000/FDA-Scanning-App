@@ -4,28 +4,6 @@ import * as firebase from "firebase";
 
 import Constants from 'expo-constants';
 
-
-// async function readFoodItem(CurrentUser) {
-//
-//     if (CurrentUser != null) {
-//         console.log("My uid is ", CurrentUser.uid)
-//
-//         let foodLog;
-//
-//         firebase
-//             .database()
-//             .ref('users/' + CurrentUser.uid)
-//             .once('value', snapshot => {
-//                 foodLog = snapshot.val();
-//                 console.log("in firebase", foodLog);
-//             });
-//
-//         await console.log("out of firebase", foodLog);
-//         return foodLog;
-//     }
-//     else console.log("current user is null")
-// }
-
 export default class History extends React.Component {
     constructor(props) {
         super(props);
