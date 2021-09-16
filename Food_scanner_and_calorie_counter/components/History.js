@@ -91,20 +91,8 @@ export default class History extends React.Component {
         return (
             <SafeAreaView style={styles.container}>
                 <ScrollView style={styles.scrollView}>
-                    <Text style={styles.text}>
-                        {this.state.foodHistory}
-                    </Text>
-
-                    <Text style={styles.text}>
-                        {this.state.foodTotal}
-                    </Text>
-
-                    <Text style={styles.text}>
-                        {'\n\n'}
-                    </Text>
-
-
-
+                    <Text style={styles.total_text}>{'\n\n'} {this.state.foodTotal} {'\n\n'}</Text>
+                    <Text style={styles.text}>{this.state.foodHistory} {'\n\n'}</Text>
                     <View style={styles.exitButton}>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate("Main")} style={styles.button}>
                             <Text style={styles.buttonText}>Return to Home Screen</Text>
@@ -145,10 +133,14 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     scrollView: {
-        //backgroundColor: 'pink',
+        //backgroundColor: '',
         marginHorizontal: 20,
     },
     text: {
         fontSize: 30,
     },
+    total_text: {
+        fontSize: 45,
+        textAlign: 'center'
+    }
 });
