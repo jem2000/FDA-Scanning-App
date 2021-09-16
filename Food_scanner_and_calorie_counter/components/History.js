@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     scrollView: {
-        //backgroundColor: '',
+        backgroundColor: 'thistle',
         marginHorizontal: 20,
     },
     text: {
