@@ -13,8 +13,9 @@ jobs:
           expo-version: '4.x'
           token: ${{ secrets.FDA_API_KEY_FOR_JEM2000 }}
       - run: npm install -g expo-cli
-      - run: npm install --save @react-native-community/masked-view
-      - run: expo init -t blank --name test_project_blank
+      - run: expo init -t blank --name Food_scanner_and_calorie_counter_actions_copy
+      - run: cd Food_scanner_and_calorie_counter_actions_copy
       - run: expo install firebase
       - run: expo install expo-barcode-scanner
+      - run: npm install --save @react-native-community/masked-view
 
