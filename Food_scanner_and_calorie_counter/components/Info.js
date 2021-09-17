@@ -43,27 +43,6 @@ function storeFoodItem(CurrentUser, FoodItem, Servings) {
   }
 }
 
-function readFoodItem(CurrentUser, FoodItem) {
-
-    if (CurrentUser != null) {
-        console.log("My uid is ", CurrentUser.uid)
-
-        firebase
-            .database()
-            .ref('users/' + CurrentUser.uid)
-            .once('value', snapshot => {
-                const tastyFood = snapshot.val();
-                console.log(tastyFood);
-             });
-
-        console.log("finished writing");
-    }
-}
-
-// function setServingsValue(num, FoodItem) {
-//   FoodItem.Servings = FoodItem.Servings * num;
-// }
-
 export default class Loading extends React.Component {
   constructor(props) {
     super(props);
@@ -113,31 +92,18 @@ export default class Loading extends React.Component {
             {'\n'}
           </Text>
           {/*<Button title="Hello World" onPress={() => alert('Hello, world!')} />*/}
-
           <View style={{ flexDirection: "row" }}>
-                {/*<View style={{ flexWrap: "wrap" }}>*/}
+                <TouchableOpacity onPress={() => this.props.navigation.navigate("BarcodeScanner")} style={styles.button}>
+                    <Text style={styles.buttonText}>Rescan</Text>
+                </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate("BarcodeScanner")} style={styles.button}>
-                      <Text style={styles.buttonText}>Rescan</Text>
-                    </TouchableOpacity>
+                <TouchableOpacity onPress={() => storeFoodItem(currentUser, FoodItem, this.state.userInput)} style={styles.button}>
+                    <Text style={styles.buttonText}>Add to Daily Intake</Text>
+                </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => storeFoodItem(currentUser, FoodItem, this.state.userInput)} style={styles.button}>
-                      <Text style={styles.buttonText}>Add to Daily Intake</Text>
-                    </TouchableOpacity>
-
-                    {/*<TouchableOpacity onPress={() => this.props.navigation.navigate("History")} style={styles.button}>*/}
-                    {/*    <Text style={styles.buttonText}>History</Text>*/}
-                    {/*</TouchableOpacity>*/}
-
-                {/*<TouchableOpacity onPress={() => readFoodItem(currentUser, FoodItem)} style={styles.button}>*/}
-                {/*    <Text style={styles.buttonText}>History</Text>*/}
-                {/*</TouchableOpacity>*/}
-
-                <TouchableOpacity onPress={() => this.props.navigation.navigate("History")} style={styles.button}>
-                        <Text style={styles.buttonText}>History</Text>
-                    </TouchableOpacity>
-
-                {/*</View>*/}
+            <TouchableOpacity onPress={() => this.props.navigation.navigate("History")} style={styles.button}>
+                    <Text style={styles.buttonText}>History</Text>
+                </TouchableOpacity>
             </View>
         </View>
     );

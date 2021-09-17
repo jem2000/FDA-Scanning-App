@@ -37,7 +37,14 @@ export default class BarcodeScanner extends React.Component {
 
     render() {
 
-        let fdc = 'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=TpuNpCiJzfPy5vcMvI9xP2yBwowcY8QqVpCus6De&query=';
+        //enter your FDC API Key Here and uncomment
+
+        ////////////////////////////////////////////////////////////
+        //                                                        //
+        //  let fdc =    ????????????????????????????????         //                                              
+        //                                                        //
+        ////////////////////////////////////////////////////////////
+
         let code = '04976400'; //sprite
 
         async function getFDC(link) {

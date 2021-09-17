@@ -5,16 +5,22 @@ import * as firebase from 'firebase';
 import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
 
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBzG9ZHCPdPloDztdEUpP7uLpbUe4pjc8o",
-  authDomain: "fda-scanner-app.firebaseapp.com",
-  databaseURL: "https://fda-scanner-app-default-rtdb.firebaseio.com",
-  projectId: "fda-scanner-app",
-  storageBucket: "fda-scanner-app.appspot.com",
-  messagingSenderId: "519417098688",
-  appId: "1:519417098688:web:f0efc60b1182e0abfa1825",
-  measurementId: "G-N306P2LH09"
-};
+//enter your Firebase info here and uncomment
+
+///////////////////////////////////////////////
+//                                           //
+//        const firebaseConfig = {           //
+//            apiKey:                        //
+//            authDomain:                    //
+//            databaseURL:                   //
+//            projectId:                     //
+//            storageBucket:                 //
+//            messagingSenderId:             //
+//            appId:                         //
+//            measurementId:                 //
+//        };                                 //
+//                                           //
+///////////////////////////////////////////////
 
 // import the different screens
 import Loading from "./components/Loading";
