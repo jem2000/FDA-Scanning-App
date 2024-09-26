@@ -1,0 +1,19 @@
+name: Project-initializer
+on: [push]
+jobs:
+  Create-new-expo-project-food-scanner:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - uses: expo/expo-github-action@v6
+        with:
+          expo-version: '4.x'
+          token: ${{ secrets.FDA_API_KEY_FOR_JEM2000 }}
+      - run: npm install -g expo-cli
+      - run: expo init -t blank --name Food_scanner_and_calorie_counter_actions_copy
+      - run: cd Food_scanner_and_calorie_counter_actions_copy
+      - run: npm install --save @react-native-community/masked-view
+
